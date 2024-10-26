@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   modules: [
+    '@nuxtjs/proxy',
     '@pinia/nuxt',
     '@vite-pwa/nuxt'
   ],
