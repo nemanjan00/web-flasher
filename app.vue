@@ -6,7 +6,7 @@
     </div>
     <Head>
       <Title>Meshtastic Flasher</Title>
-      <Meta name="description" content="Meshtastic Flasher" />
+      <Meta name="description" content="Meshtastic Serbia Flasher" />
     </Head>
 
     <section id="main" class="text-gray-400 body-font halloween-theme">
