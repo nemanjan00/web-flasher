@@ -16,10 +16,10 @@
             <div class="flex flex-wrap sm:flex-row flex-col py-1">
               <div class="mx-auto">
                 <h1 class="text-white text-6xl font-bold inline-block ml-4 mt-8 align-top">
-                  <span :class="{ 'animate-punkin': firmwareStore.prereleaseUnlocked }">🎃</span>
+                  <span :class="{ 'animate-punkin': firmwareStore.prereleaseUnlocked }">🇷🇸</span>
                   <img src="@/assets/img/logo.svg" class="h-32 w-32 inline-block pt-0 mt-0" alt="Meshtastic Logo" />
                   Flasher
-                  <span :class="{ 'animate-punkin': firmwareStore.prereleaseUnlocked }">🎃</span>
+                  <span :class="{ 'animate-punkin': firmwareStore.prereleaseUnlocked }">🇷🇸</span>
                 </h1>
               </div>
             </div>

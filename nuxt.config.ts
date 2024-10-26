@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
 	routeRules: {
 		// prerender index route by default
-		'/api': { proxy: 'https://api.meshtastic.org' },
+		'/api/**': { proxy: 'https://api.meshtastic.org/**' },
 		'/': { prerender: true },
 	},
 
