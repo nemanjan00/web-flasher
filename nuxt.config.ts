@@ -3,59 +3,56 @@ import { defineNuxtConfig } from 'nuxt/config';
 import nodePolyfills from 'vite-plugin-node-stdlib-browser';
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+	devtools: { enabled: true },
 
-  proxy: {
-    '/api/': { target: 'https://api.meshtastic.org/', pathRewrite: { '^/api/': '' } }
-  },
+	routeRules: {
+		// prerender index route by default
+		'/api': { proxy: 'https://api.meshtastic.org' },
+		'/': { prerender: true },
+	},
 
-  routeRules: {
-    // prerender index route by default
-    '/': { prerender: true },
-  },
+	ssr: false,
+	css: ['~/assets/css/main.css'],
 
-  ssr: false,
-  css: ['~/assets/css/main.css'],
+	modules: [
+		//'@nuxtjs/proxy',
+		'@pinia/nuxt',
+		'@vite-pwa/nuxt'
+	],
 
-  modules: [
-    '@nuxtjs/proxy',
-    '@pinia/nuxt',
-    '@vite-pwa/nuxt'
-  ],
+	pwa: {
+		/* PWA options */
+	},
 
-  pwa: {
-    /* PWA options */
-  },
+	postcss: {
+		plugins: {
+			tailwindcss: {},
+			autoprefixer: {},
+		},
+	},
 
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
+	vite: {
+		plugins: [
+			nodePolyfills(),
+		],
+		server: {
+			proxy: {
+				"^/api/.*": {
+					target:
+						"https://api.meshtastic.org/",
+					changeOrigin: true,
+					followRedirects: true,
+					rewrite: (path) => path.replace(/^\/api/, ""),
+					secure: false,
+					headers: {
+						Accept: "application/octet-stream",
+						Origin: 'https://flash.meshtastic.org',
+						Referer: 'https://flash.meshtastic.org/'
+					},
+				}
+			}
+		}
+	},
 
-  vite: {
-    plugins: [
-      nodePolyfills(),
-    ],
-    server: {
-      proxy: {
-        "^/api/.*": {
-          target:
-            "https://api.meshtastic.org/",
-          changeOrigin: true,
-          followRedirects: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-          secure: false,
-          headers: {
-            Accept: "application/octet-stream",
-            Origin: 'https://flash.meshtastic.org',
-            Referer: 'https://flash.meshtastic.org/'
-          },
-        }
-      }
-    }
-  },
-
-  compatibilityDate: '2024-09-03',
+	compatibilityDate: '2024-09-03',
 });
