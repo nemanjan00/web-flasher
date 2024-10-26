@@ -72,13 +72,13 @@ export const useFirmwareStore = defineStore('firmware', {
       firmwareApi.get<FirmwareReleases>()
         .then((response: FirmwareReleases) => {
           // Only grab the latest 4 releases
-          this.stable = response.releases.stable.slice(0, 4);
-          this.alpha = response.releases.alpha.filter(f => !f.title.includes('Preview')).slice(0, 4);
+          this.stable = response.releases.stable;
+          this.alpha = response.releases.alpha.filter(f => !f.title.includes('Preview'));
           this.previews = [
-            ...response.releases.alpha.filter(f => f.title.includes('Preview')).slice(0, 4), 
+            ...response.releases.alpha.filter(f => f.title.includes('Preview')), 
             ...previews
           ];
-          this.pullRequests = response.pullRequests.slice(0, 4);
+          this.pullRequests = response.pullRequests;
         })
         .catch((error) => {
           console.error('Error fetching firmware list:', error);
