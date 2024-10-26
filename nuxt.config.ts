@@ -5,6 +5,10 @@ import nodePolyfills from 'vite-plugin-node-stdlib-browser';
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  proxy: {
+    '/api/': { target: 'https://api.meshtastic.org/', pathRewrite: { '^/api/': '' } }
+  },
+
   routeRules: {
     // prerender index route by default
     '/': { prerender: true },
