@@ -33,5 +33,5 @@ export function getCorsFriendyReleaseUrl(url: string) {
 		.replace('-nrf52840-', '-')
 		.replace('-stm32-', '-')
 		.replace('-rp2040-', '-')
-	return `https://raw.githubusercontent.com/meshtastic/meshtastic.github.io/master/${firmwareName}`;
+	return `https://mesh-serbia.s3.eu-central-1.amazonaws.com/${firmwareName}`;
 }
