@@ -72,6 +72,14 @@ export const useFirmwareStore = defineStore('firmware', {
       firmwareApi.get<FirmwareReleases>()
         .then((response: FirmwareReleases) => {
           // Only grab the latest 4 releases
+          response.releases.stable.push({
+            "id": "v2.2.24.e6a2c06",
+            "title": "Meshtastic Firmware 2.2.24.e6a2c06 codename Vlajke",
+            "page_url": "https://github.com/meshtastic/firmware/releases/tag/v2.2.24.e6a2c06",
+            "zip_url": "https://github.com/meshtastic/firmware/releases/download/v2.2.24.e6a2c06/firmware-2.2.24.e6a2c06.zip",
+            "release_notes": "Samo za Vlajketa"
+          });
+
           this.stable = response.releases.stable;
           this.alpha = response.releases.alpha.filter(f => !f.title.includes('Preview'));
           this.previews = [
